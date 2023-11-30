@@ -4,6 +4,9 @@ from wordcloud import WordCloud
 import json
 from urllib.parse import urlparse, parse_qs
 from flask import Flask, render_template, request
+import people
+import random
+
 
 headers = {
     'User-agent':
@@ -53,7 +56,7 @@ remove = [
     'sub', 'sup', 'wbr', 'svg', "subsection", "wikimedia", "lt", "gt", "archived"
 ]
 
-def guess(person, guess, generate=False):
+def guess(person, guess, generate=False, outname=""):
     url = get_search_url(person)
 
     redirs = get_redirects(url)
@@ -72,24 +75,29 @@ def guess(person, guess, generate=False):
             if any(w_frag.lower() in red.lower() for red in redirs) or len(w_frag)<5 or any(w in ["'", '"'] for w in w_frag) or w_frag.lower() in remove:
                 good=False
                 break
-        if good:
+        if good and len(word)>5 and word.isalnum():
             out+=[word]
     if generate:
-        unique_string = " ".join(list(set(out)))
+        unique_string = " ".join(((out)))
         wordcloud = WordCloud(width=1000, height=500).generate(unique_string)
 
-        wordcloud.to_file("out.png")
+        wordcloud.to_file(outname)
 
 
     return guess.lower() in redirs
 
 app = Flask("wikicloud")
 
+app.config['UPLOAD_FOLDER'] = "static"
+
 @app.route("/gen")
 def generate():
-    return json.load(True)
+    key, val = random.choice(list(people.people.items()))
+    guess(key, "nope", True, f"static/{key}.png")
+    src=f"static/{key}.png"
+    return render_template("app.html", src=src, name=key)
 
-guess("steve wozniak", "nn", True)
-for x in range(3):
-    inp=input("Enter your guess")
-    print(guess("steve wozniak", inp))
+# guess("steve wozniak", "nn", True, )
+# for x in range(3):
+#     inp=input("Enter your guess")
+#     print(guess("steve wozniak", inp))
