@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wikicloud</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #inner {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            margin-bottom: 10px;
+        }
+
+        input {
+            padding: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #status {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        button:disabled,
+        input:disabled {
+            background-color: #ddd;
+            color: #666;
+            cursor: not-allowed;
+        }
+    </style>
+    <script>
+        guesses=0;
+
+        
+
+        function submitForm() {
+            guesses++;
+            document.getElementById("submit").disabled = true;
+            // Get form data
+            var guess = document.getElementById('guess').value
+
+
+            // Specify the endpoint URL
+            var endpoint = '/submit/{{name}}?guess='+guess;
+
+            // Use fetch API to send data to the specified endpoint
+            fetch(endpoint, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Handle response from the server
+                console.log('Response from server:', data);
+                if (data==true) {
+                    document.getElementById("status").innerHTML="You got it!"
+                    document.getElementById("submit").disabled = true;
+                    return
+                } else {
+                    var s_or_no="es";
+                    if (guesses==3) {
+                        s_or_no=""
+                    }
+
+                    document.getElementById("submit").disabled = false;
+
+                    if (guesses>3) {
+                        document.getElementById("status").innerHTML = "You failed! The answer was {{name}}"
+                        document.getElementById("submit").disabled = true;
+                    }
+                    document.getElementById("status").innerHTML=`You have ${4-guesses} guess${s_or_no} left`
+                    return 
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+            
+
+        }
+    </script>
+</head>
+<body>
+    <div id="inner">
+        <img src="../{{ src }}" />
+        <h2>What is this game?</h2>
+        <p>This is WikiCloud, which takes a random celebrity's wikipedia page and takes the words from it. It then produces a word cloud, and you have 4 shots to guess that celeb!</p>
+        <form id="guessForm">
+            <label for="guess">Your guess:</label>
+            <input type="guess" id="guess" name="guess" required>
+
+            <button id="submit" type="button" onclick="submitForm()">Submit</button>
+        </form>
+        <h1 id="status">Try your first guess!</h1>
+    </div> 
+   
+
+    
+</body>
+</html>

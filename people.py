@@ -1,0 +1,21 @@
+people = {
+    "Leonardo DiCaprio": ["Actor", "Environmentalist", "Philanthropist"],
+    "Taylor Swift": ["Singer", "Songwriter", "Businesswoman"],
+    "Elon Musk": ["Entrepreneur", "Innovator", "Space Enthusiast"],
+    "Oprah Winfrey": ["Media Mogul", "Philanthropist", "Talk Show Host"],
+    "Tom Hanks": ["Actor", "Producer", "Film Director"],
+    "Serena Williams": ["Tennis Player", "Entrepreneur", "Philanthropist"],
+    "Bill Gates": ["Entrepreneur", "Philanthropist", "Tech Visionary"],
+    "Emma Watson": ["Actor", "Activist", "UN Women Goodwill Ambassador"],
+    "Dwayne Johnson": ["Actor", "Wrestler", "Businessman"],
+    "Michelle Obama": ["Former First Lady", "Author", "Advocate"],
+    "Jeff Bezos": ["Entrepreneur", "Philanthropist", "Amazon CEO"],
+    "Beyoncé": ["Singer", "Songwriter", "Entrepreneur"],
+    "Keanu Reeves": ["Actor", "Philanthropist", "Internet Meme Icon"],
+    "Warren Buffett": ["Investor", "Philanthropist", "Business Tycoon"],
+    "Angelina Jolie": ["Actor", "Humanitarian", "Film Director"],
+    "Mark Zuckerberg": ["Entrepreneur", "Philanthropist", "Social Media Pioneer"],
+    "Usain Bolt": ["Sprinter", "Athlete", "World Record Holder"],
+    "Ellen DeGeneres": ["Comedian", "TV Host", "Advocate"],
+    "Malala Yousafzai": ["Activist", "Nobel Laureate", "Education Advocate"]
+}
