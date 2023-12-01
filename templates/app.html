@@ -110,6 +110,7 @@
                         document.getElementById("status").innerHTML = "You failed! The answer was {{name}}"
                         document.getElementById("submit").disabled = true;
                         document.getElementById("reload").disabled = false;
+                        return
                     }
                     document.getElementById("status").innerHTML=`You have ${4-guesses} guess${s_or_no} left`
                     return 
