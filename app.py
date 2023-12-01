@@ -38,7 +38,7 @@ def get_search_url(query: str):
     return f"http://en.wikipedia.org/wiki/{json_stuff['query']['search'][0]['title']}"
 
 
-remove = [
+blacklist = [
     'section', 'article', 'aside', 'figcaption', 'figure',
     'footer', 'header', 'hgroup', 'nav', 'details', 'summary',
     'blockquote', 'cite', 'pre', 'code', 'mark', 'output',
@@ -54,7 +54,35 @@ remove = [
     'legend', 'datalist', 'optgroup', 'keygen', 'output',
     'canvas', 'math', 'mark', 'progress', 'time', 'ruby',
     'sub', 'sup', 'wbr', 'svg', "subsection", "wikimedia", "lt", "gt", "archived",
-    "huffpost", "reuters", "forbes", "contents", "references", "newsweek"
+    "huffpost", "reuters", "forbes", "contents", "references", "newsweek" 'English',
+    'Español',
+    'Français',
+    'Deutsch',
+    'Italiano',
+    'Português',
+    'Русский',
+    '中文',
+    '日本語',
+    'العربية',
+    'हिन्दी',
+    '한국어',
+    'Polski',
+    'Nederlands',
+    'Türkçe',
+    'עברית',  # Hebrew
+    'Ελληνικά',  # Greek
+    'Svenska',  # Swedish
+    'Norsk bokmål',  # Norwegian Bokmål
+    'Dansk',  # Danish
+    'Suomi',  # Finnish
+    'Magyar',  # Hungarian
+    'Čeština',  # Czech
+    'ไทย',  # Thai
+    'Bahasa Indonesia',  # Indonesian
+    'Tiếng Việt',  # Vietnamese
+    'தமிழ்',  # Tamil
+    'فارسی',  # Persian,
+    "newsweek"
 ]
 
 def guess(person, guess, generate=False, outname=""):
@@ -73,7 +101,7 @@ def guess(person, guess, generate=False, outname=""):
     for word in words:
         good=True
         for w_frag in word.split(" "):
-            if any(w_frag.lower() in red.lower() for red in redirs) or len(w_frag)<5 or any(w in ["'", '"'] for w in w_frag) or w_frag.lower() in remove:
+            if any(w_frag.lower() in red.lower() for red in redirs) or len(w_frag)<5 or any(w in ["'", '"'] for w in w_frag) or w_frag.lower() in blacklist:
                 good=False
                 break
         if good and len(word)>5 and word.isalnum():

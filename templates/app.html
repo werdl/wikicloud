@@ -70,8 +70,8 @@
     </style>
     <script>
         guesses=0;
+        document.getElementById("reload").disabled = true;
 
-        
 
         function submitForm() {
             guesses++;
@@ -106,9 +106,10 @@
 
                     document.getElementById("submit").disabled = false;
 
-                    if (guesses>3) {
+                    if (guesses==3) {
                         document.getElementById("status").innerHTML = "You failed! The answer was {{name}}"
                         document.getElementById("submit").disabled = true;
+                        document.getElementById("reload").disabled = false;
                     }
                     document.getElementById("status").innerHTML=`You have ${4-guesses} guess${s_or_no} left`
                     return 
@@ -134,6 +135,9 @@
             <button id="submit" type="button" onclick="submitForm()">Submit</button>
         </form>
         <h1 id="status">Try your first guess!</h1>
+
+        <br>
+        <button id="reload" onclick="window.location.reload()">Try again</button>
     </div> 
    
 
