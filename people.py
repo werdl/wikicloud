@@ -17,5 +17,18 @@ people = {
     "Mark Zuckerberg": ["Entrepreneur", "Philanthropist", "Social Media Pioneer"],
     "Usain Bolt": ["Sprinter", "Athlete", "World Record Holder"],
     "Ellen DeGeneres": ["Comedian", "TV Host", "Advocate"],
-    "Malala Yousafzai": ["Activist", "Nobel Laureate", "Education Advocate"]
+    "Malala Yousafzai": ["Activist", "Nobel Laureate", "Education Advocate"],
+    "Ada Lovelace": ["Pioneer", "Analytical Engine", "Mathematics"],
+    "Grace Hopper": ["Innovator", "COBOL Developer", "Admiral"],
+    "Alan Turing": ["Trailblazer", "Enigma Codebreaker", "Theoretical Computer Science"],
+    "Tim Berners-Lee": ["Revolutionary", "World Wide Web", "Information Technology"],
+    "Donald Knuth": ["Algorithmist", "The Art of Computer Programming", "Mathematics"],
+    "Margaret Hamilton": ["ApolloCoder", "Software Engineering", "Space Exploration"],
+    "Linus Torvalds": ["Pioneer", "Linux Kernel", "Open Source"],
+    "Larry Page": ["Googler", "Search Engine", "Entrepreneurship"],
+    "Sergey Brin": ["Googler", "Internet Programmer", "Innovation"],
+    "Guido van Rossum": ["Pythonista", "Python", "Programming Languages"],
+    "Richard Stallman": ["Hacktivist", "Free Software Movement", "GNU"],
+    "Mark Zuckerberg": ["Internet Analyst", "Social Media", "Entrepreneurship"],
+    "Dogecoin": ["Meme Icon", "Shiba Inu", "Cryptocurrency Mascot"]
 }

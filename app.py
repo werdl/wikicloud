@@ -55,31 +55,31 @@ blacklist = [
     'canvas', 'math', 'mark', 'progress', 'time', 'ruby',
     'sub', 'sup', 'wbr', 'svg', "subsection", "wikimedia", "lt", "gt", "archived",
     "huffpost", "reuters", "forbes", "contents", "references", "newsweek" 'English',
-    'Español',
-    'Français',
-    'Deutsch',
-    'Italiano',
-    'Português',
-    'Русский',
+    'español',
+    'français',
+    'deutsch',
+    'italiano',
+    'português',
+    'pусский',
     '中文',
     '日本語',
     'العربية',
     'हिन्दी',
     '한국어',
-    'Polski',
-    'Nederlands',
-    'Türkçe',
+    'polski',
+    'nederlands',
+    'türkçe',
     'עברית',  # Hebrew
     'Ελληνικά',  # Greek
-    'Svenska',  # Swedish
-    'Norsk bokmål',  # Norwegian Bokmål
-    'Dansk',  # Danish
-    'Suomi',  # Finnish
-    'Magyar',  # Hungarian
-    'Čeština',  # Czech
+    'svenska',  # Swedish
+    'norsk bokmål',  # Norwegian Bokmål
+    'dansk',  # Danish
+    'suomi',  # Finnish
+    'magyar',  # Hungarian
+    'čeština',  # Czech
     'ไทย',  # Thai
-    'Bahasa Indonesia',  # Indonesian
-    'Tiếng Việt',  # Vietnamese
+    'bahasa Indonesia',  # Indonesian
+    'tiếng Việt',  # Vietnamese
     'தமிழ்',  # Tamil
     'فارسی',  # Persian,
     "newsweek"
@@ -118,6 +118,10 @@ def guess(person, guess, generate=False, outname=""):
 app = Flask("wikicloud")
 
 app.config['UPLOAD_FOLDER'] = "static"
+
+@app.route("/info/<celeb>")
+def info(celeb):
+    return json.dumps(people.people[celeb])
 
 @app.route("/")
 def home():

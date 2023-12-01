@@ -103,10 +103,22 @@
                     if (guesses==3) {
                         s_or_no=""
                     }
+                    if (guesses>=1) {
+                        fetch(`/info/{{name}}`)
+                        .then(
+                            data => {
+                                console.log(data)
+                                data.json().then( function(d) {
+                                    document.getElementById("info").innerHTML = `<strong>Categories:<strong> <p>${d.slice(0, guesses).join(", ")}<p>`
+                                    }  
+                                )
+                            }
+                        )
+                    }
 
                     document.getElementById("submit").disabled = false;
 
-                    if (guesses==3) {
+                    if (guesses==4) {
                         document.getElementById("status").innerHTML = "You failed! The answer was {{name}}"
                         document.getElementById("submit").disabled = true;
                         document.getElementById("reload").disabled = false;
@@ -126,6 +138,8 @@
 </head>
 <body>
     <div id="inner">
+        <br>
+        <br>
         <img src="../{{ src }}" />
         <h2>What is this game?</h2>
         <p>This is WikiCloud, which takes a random celebrity's wikipedia page and takes the words from it. It then produces a word cloud, and you have 4 shots to guess that celeb!</p>
@@ -135,13 +149,11 @@
 
             <button id="submit" type="button" onclick="submitForm()">Submit</button>
         </form>
+        <h2 id="info"></h2>
         <h1 id="status">Try your first guess!</h1>
-
         <br>
         <button id="reload" onclick="window.location.reload()">Try again</button>
-    </div> 
-   
-
-    
+        <br>
+    </div>
 </body>
 </html>
