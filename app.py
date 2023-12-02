@@ -6,7 +6,8 @@ from urllib.parse import urlparse, parse_qs
 from flask import Flask, render_template, request
 import people
 import random
-
+import os
+import time
 
 headers = {
     'User-agent':
@@ -126,15 +127,33 @@ def info(celeb):
 @app.route("/")
 def home():
     key, val = random.choice(list(people.people.items()))
-    guess(key, "nope", True, f"static/{key}.png")
+    if not os.path.exists(f"static/{key}.png"):
+        if key=="Doge":
+            guess("dogecoin", "nope", True, f"static/{key}.png")
+        else:
+            guess(key, "nope", True, f"static/{key}.png")
     src=f"static/{key}.png"
     return render_template("app.html", src=src, name=key)
+
+@app.route("/load")
+def load_images():
+    start=time.time()
+    for person, _ in people.people.items():
+        exists=os.path.exists(f"static/{person}.png")
+        if not exists:
+            if person=="Doge":
+                guess("dogecoin", "nope", True, f"static/{person}.png")
+            else:
+                guess(person, "nope", True, f"static/{person}.png")
+        keys = list(people.people.keys())
+        print(f'{"Skipped" if exists else "Generated"} {person} ({keys.index(person)+1}/{len(keys)})')
+    end=time.time()
+    return json.dumps({
+        "code": 200,
+        "message": "successfully cached all images",
+        "timetaken": end-start
+    })
 
 @app.route("/submit/<g>")
 def guess_json(g):
     return json.dumps(guess(g, request.args["guess"]))
-
-# guess("steve wozniak", "nn", True, )
-# for x in range(3):
-#     inp=input("Enter your guess")
-#     print(guess("steve wozniak", inp))

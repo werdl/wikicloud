@@ -1,6 +1,5 @@
 people = {
     "Leonardo DiCaprio": ["Actor", "Environmentalist", "Philanthropist"],
-    "Taylor Swift": ["Singer", "Songwriter", "Businesswoman"],
     "Elon Musk": ["Entrepreneur", "Innovator", "Space Enthusiast"],
     "Oprah Winfrey": ["Media Mogul", "Philanthropist", "Talk Show Host"],
     "Tom Hanks": ["Actor", "Producer", "Film Director"],
@@ -30,5 +29,5 @@ people = {
     "Guido van Rossum": ["Pythonista", "Python", "Programming Languages"],
     "Richard Stallman": ["Hacktivist", "Free Software Movement", "GNU"],
     "Mark Zuckerberg": ["Internet Analyst", "Social Media", "Entrepreneurship"],
-    "Dogecoin": ["Meme Icon", "Shiba Inu", "Cryptocurrency Mascot"]
+    "Doge": ["Meme Icon", "Shiba Inu", "Cryptocurrency Mascot"]
 }
